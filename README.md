@@ -101,4 +101,4 @@ Full UML PDF can be found within the project.
 ## Screenshots
 
 ### Home Screen (dark)
-<img src="https://github.com/ApplicationFlight/anomalies_detection_web_app/blob/master/screenshots/dark_empty.jpg" width="600" height="300"/>
+<img src="https://github.com/LironHaim15/anomalies_detection_web_app/blob/master/screenshots/dark_empty.jpg" width="600" height="300"/>
