@@ -11,12 +11,12 @@ app.use(bodyparser.text());
 app.use(bodyparser.json());
 app.use(express.urlencoded({extended: false}));
 app.use(fileUpload({limits: {type: 'csv'}}));
-app.use(express.static('../views'));
+app.use(express.static('views'));
 
-const theme = 'dark'; // 'light' or 'dark'
+const theme = 'light'; // 'light' or 'dark'
 
 app.get('/', (req,res)=>{
-    res.sendFile("index.html");
+    res.sendFile('index.html');
 })
 
 app.post('/detect', (req,res)=>{
