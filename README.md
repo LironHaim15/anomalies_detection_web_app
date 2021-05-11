@@ -100,6 +100,5 @@ Full UML PDF can be found within the project.
 
 ## Screenshots
 
-### FlightGear Launcher in Settings Window
-[![FlightGear Launcher in Settings window](\screenshots\FGWindow.jpg "FGWindow.jpg")](https://ibb.co/gDmnK1v)
-
+### Home Screen (dark)
+<img src="https://github.com/ApplicationFlight/anomalies_detection_web_app/blob/master/screenshots/dark_empty.jpg" width="600" height="300"/>
