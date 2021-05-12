@@ -15,7 +15,13 @@ The web app runs locally with port 8080. Project developed in Node.JS Express.
 
 * Make an HTTP-POST request of FormData including the `learn` and `test` csv file, and also the desired detection 
   algorithm: `simepl` or `hybrid`. Get a JSON response containing the results.
-
+  
+* About the detection algorithms:
+  * Simple Detector - detects anomalies which are far from the regression line of two correlated features, with
+    correlation above 0.9. The line is learned from the train data csv.
+  * Hybrid Detector - same as the Simple Detector but also detects data points outside the min-circle for features of
+  correlation between 0.5 and 0.9.
+    
 ## Table of contents
 > * [Anomalies Detection Web Application](#anomalies-detection-web-application)
     >   * [About](#about)
@@ -63,7 +69,7 @@ You may also send a manual HTTP-POST request to the url `localhost:8080` and get
 
 * Node.js (developed and tested with v14.16.1)  
 * Installed packaged through npm:
-     * express
+    * express
     * express-fileupload
     * node-fetch
     * node-json2html
@@ -72,6 +78,8 @@ You may also send a manual HTTP-POST request to the url `localhost:8080` and get
     * upload
     * body-parser
     * form-data
+    * n-readlines
+    * path
     
 See [Starting The Server Side](#starting-the-server-side) for more information on how to install them all.
 
@@ -79,9 +87,9 @@ See [Starting The Server Side](#starting-the-server-side) for more information o
 
 The project uses the design pattern of MVC.
 Our code files are organized in 3 folders:
-* `views` folder contains the main html `index.html` and another css folder with 2 css files (`dark.css` for dark theme and `light.css` for light theme).
-  To change between the two themes you must do it manually on `index.html` and also in `server.js` - change the `theme`
-   variable to light or dark.
+* `views` folder contains the main html `index.html`,`results.html` where the results are injected, and dedicated html 
+  files for errors. Also, another css folder with 2 css files (`dark.css` for dark theme and `light.css` for light theme).
+  To change between the two themes you must do it manually on each html file in the views' folder.
 * `models` folder contains `csv_parser.js` which responsible for parsing the csv data, learn the data and detect
   the anomalies using the models of the algorithms in the folder `detector`.
 * `controllers` contains the `server.js` file which responsible to connect between the view and the models.
