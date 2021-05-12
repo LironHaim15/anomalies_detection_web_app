@@ -112,10 +112,10 @@ Full UML PDF can be found within the project and a picture in the [Screenshots](
 <img src="https://github.com/LironHaim15/anomalies_detection_web_app/blob/master/screenshots/dark_empty.jpg" alt="Home Screen"/>
 
 ### Anomalies Result Screen (dark)
-<img src="https://github.com/LironHaim15/anomalies_detection_web_app/blob/master/screenshots/dark_ano.jpg" width="600" height="300" alt="Anomalies Result Screen"/>
+<img src="https://github.com/LironHaim15/anomalies_detection_web_app/blob/master/screenshots/dark_ano.jpg" alt="Anomalies Result Screen"/>
 
 ### Home Screen (light)
-<img src="https://github.com/LironHaim15/anomalies_detection_web_app/blob/master/screenshots/light_ano.jpg" width="600" height="300" alt="Home Screen"/>
+<img src="https://github.com/LironHaim15/anomalies_detection_web_app/blob/master/screenshots/light_ano.jpg" alt="Home Screen"/>
 
 ### UML
 <img src="https://github.com/LironHaim15/anomalies_detection_web_app/blob/master/screenshots/UML.png" alt="UML"/>
