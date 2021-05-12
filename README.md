@@ -38,7 +38,9 @@ The web app runs locally with port 8080. Project developed in Node.JS Express.
 ## Starting The Server Side
 
 Download and install Node.js from the [official website](https://nodejs.org/en/download/).
+
 Download the project from this git page, save it on your computer.
+
 Navigate to the project directory and open the terminal. Enter the command `node -v` or `nmp -v` just to make sure 
 Node.js is installed, the version of Node.js should be printed.
 
