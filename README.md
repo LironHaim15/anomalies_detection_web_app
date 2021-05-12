@@ -118,4 +118,4 @@ Full UML PDF can be found within the project and a picture in the [Screenshots](
 <img src="https://github.com/LironHaim15/anomalies_detection_web_app/blob/master/screenshots/light_ano.jpg" width="600" height="300" alt="Home Screen"/>
 
 ### UML
-<img src="https://github.com/LironHaim15/anomalies_detection_web_app/blob/master/screenshots/UML.png" width="600" height="300" alt="UML"/>
+<img src="https://github.com/LironHaim15/anomalies_detection_web_app/blob/master/screenshots/UML.png" alt="UML"/>
