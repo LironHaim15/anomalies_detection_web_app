@@ -15,13 +15,15 @@ app.use(express.urlencoded({extended: false}));
 app.use(fileUpload({limits: {type: 'csv'}}));
 app.use(express.static('views'));
 
+//handle each request type
 app.get('/', (req,res)=>{
-
+    //send home page
     res.sendFile('index.html', { root: path.join(__dirname, '../views') });
 })
 
 app.post('/detect', (req,res)=>{
 
+    //handle cases where not both files were uploaded.
     if (!req.files || Object.keys(req.files).length === 0) {
         return res.status(400).sendFile('errorNoFiles.html', { root: path.join(__dirname, '../views') });
     }
@@ -29,6 +31,7 @@ app.post('/detect', (req,res)=>{
         return res.status(400).sendFile('errorOneFile.html', { root: path.join(__dirname, '../views') });
     }
 
+    //send the received data in post request to '/' and get a JSON fle with the result.
     const formData = new FormData();
     formData.append("learnCSV",req.files.learnCSV.data)
     formData.append("testCSV",req.files.testCSV.data)
@@ -37,7 +40,8 @@ app.post('/detect', (req,res)=>{
         method: 'POST',
         body: formData
     }).then(response => response.json())
-        // Print the result
+
+        // parse the result and inject it to result.html and send it.
         .then((reports)=>{
 
             const liner = new lineReader(path.join(__dirname, '../views/results.html'));
@@ -66,6 +70,8 @@ app.post('/detect', (req,res)=>{
 })
 
 app.post('/', (req,res)=>{
+
+    //call parser to parse the data, learn it and detect anomalies. then send back the results in JSON.
     let result = parser.getFileData(req.files.learnCSV,req.files.testCSV,req.body.algorithmSelect)
     res.contentType('application/json')
     res.send(JSON.stringify(result))

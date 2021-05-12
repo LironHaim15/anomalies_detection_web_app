@@ -94,7 +94,7 @@ Our code files are organized in 3 folders:
   the anomalies using the models of the algorithms in the folder `detector`.
 * `controllers` contains the `server.js` file which responsible to connect between the view and the models.
 
-Full UML PDF can be found within the project.
+Full UML PDF can be found within the project and a picture in the [Screenshots](#screenshots) below.
 
 ## Video Demo
 
@@ -109,10 +109,13 @@ Full UML PDF can be found within the project.
 ## Screenshots
 
 ### Home Screen (dark)
-<img src="https://github.com/LironHaim15/anomalies_detection_web_app/blob/master/screenshots/dark_empty.jpg" width="600" height="300"/>
+<img src="https://github.com/LironHaim15/anomalies_detection_web_app/blob/master/screenshots/dark_empty.jpg" width="600" height="300" alt="Home Screen"/>
 
 ### Anomalies Result Screen (dark)
-<img src="https://github.com/LironHaim15/anomalies_detection_web_app/blob/master/screenshots/dark_ano.jpg" width="600" height="300"/>
+<img src="https://github.com/LironHaim15/anomalies_detection_web_app/blob/master/screenshots/dark_ano.jpg" width="600" height="300" alt="Anomalies Result Screen"/>
 
 ### Home Screen (light)
-<img src="https://github.com/LironHaim15/anomalies_detection_web_app/blob/master/screenshots/light_ano.jpg" width="600" height="300"/>
+<img src="https://github.com/LironHaim15/anomalies_detection_web_app/blob/master/screenshots/light_ano.jpg" width="600" height="300" alt="Home Screen"/>
+
+### UML
+<img src="https://github.com/LironHaim15/anomalies_detection_web_app/blob/master/screenshots/UML.png" width="600" height="300" alt="UML"/>

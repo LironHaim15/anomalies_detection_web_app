@@ -3,9 +3,11 @@ let hybridDetector = require('./detector/HybridAnomalyDetector');
 
 function getFileData(learnFile, testFile, algoType){
 
+    //parse both files
     let learnJs = Parser(learnFile);
     let testJs = Parser(testFile);
 
+    //call detector according the chosen detector.
     if (algoType === "simple"){
         let simple = new simpleDetector();
         simple.learnNormal(learnJs);
@@ -18,9 +20,9 @@ function getFileData(learnFile, testFile, algoType){
     }
 }
 
+//parse csv file to JSON object. first line contains the name of the columns.
 function Parser(file){
 
-    let jArray= [];
     let data = file.data.toString()
 
     let arr= data.split("\n");
@@ -31,20 +33,20 @@ function Parser(file){
 
     let obj = {};
 
-    let i=0,j=0;
+    let i,j=0;
     for (i = 1; i < rows-1; i++) {
-        let myNewLine = arr[i].split(',');
+        let line = arr[i].split(',');
         for (j = 0; j < cols; j++) {
 
-            let headerText =keys[j].substring(0, keys[j].length);
-            let value = parseFloat(myNewLine[j]);
-            if (!obj[headerText]){
-                obj[headerText] = [];
+            let header =keys[j].substring(0, keys[j].length);
+            let value = parseFloat(line[j]);
+            if (!obj[header]){
+                obj[header] = [];
             }
-            obj[headerText].push(value);
+            obj[header].push(value);
         }
     }
-    jArray.push(obj);
+
     return obj;
 
 }
