@@ -48,7 +48,7 @@ Enter the command:
 ```
 npm install
 ```
-This should install in the project file all the dependencies packages according to `package.json` file.
+This should install in the project's folder all the dependencies packages according to `package.json` file.
 To run the server from the project directory enter the command:
 ```
 nodemon controllers/server.js
@@ -65,6 +65,7 @@ As the client, navigate to `localhost:8080` using the browser. Enter the csv fil
 Press on the `Submit!` button and get the results in the frame below.
 
 You may also send a manual HTTP-POST request to the url `localhost:8080` and get the results via JSON response.
+The request should contain FormData with the two files and the type of detection algorithm.
 
 
 ## Requirements
