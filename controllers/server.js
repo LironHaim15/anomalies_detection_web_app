@@ -5,39 +5,28 @@ const json2html = require('node-json2html');
 const fetch = require('node-fetch');
 const bodyparser = require('body-parser');
 const FormData = require('form-data');
+const path = require('path');
+const lineReader = require('n-readlines');
 
 const app = express();
 app.use(bodyparser.text());
 app.use(bodyparser.json());
 app.use(express.urlencoded({extended: false}));
 app.use(fileUpload({limits: {type: 'csv'}}));
-app.use(express.static('../views'));
-
-const theme = 'dark'; // 'light' or 'dark'
+app.use(express.static('views'));
 
 app.get('/', (req,res)=>{
-    res.sendFile("index.html");
+
+    res.sendFile('index.html', { root: path.join(__dirname, '../views') });
 })
 
 app.post('/detect', (req,res)=>{
 
-    let initialAnswerHtml ="<!DOCTYPE html>\n" +
-        "<html lang=\"en\">\n" +
-        " <head>\n" +
-        "    <meta charset=\"UTF-8\">\n" +
-        "    <title>Anomalies Detection Results</title>\n" +
-        "    <h2 id='resultsText'>Error</h2>\n" +
-        "    <link rel=\"stylesheet\" href=\"css/"+theme+".css\">\n" +
-        "</head>" +
-        "<body>";
-    let endBodyAnswerHtml = "</body>";
-
-
     if (!req.files || Object.keys(req.files).length === 0) {
-        return res.status(400).send(initialAnswerHtml + 'No files were uploaded.' + endBodyAnswerHtml);
+        return res.status(400).sendFile('errorNoFiles.html', { root: path.join(__dirname, '../views') });
     }
     if (Object.keys(req.files).length === 1) {
-        return res.status(400).send(initialAnswerHtml+'Please upload both Train and Test csv files.'+ endBodyAnswerHtml);
+        return res.status(400).sendFile('errorOneFile.html', { root: path.join(__dirname, '../views') });
     }
 
     const formData = new FormData();
@@ -50,29 +39,15 @@ app.post('/detect', (req,res)=>{
     }).then(response => response.json())
         // Print the result
         .then((reports)=>{
-            let resultsTable1 ="<!DOCTYPE html>\n" +
-                "<html lang=\"en\">\n" +
-                " <head>\n" +
-                "    <meta charset=\"UTF-8\">\n" +
-                "    <title>Anomalies Detection Resuflts</title>\n" +
-                "    <h2 id='resultsText'>Anomalies Detection Results &ensp; ("+ req.body.algorithmSelect +" detector)</h2>\n" +
-                "    <link rel=\"stylesheet\" href=\"css/"+theme+".css\">\n" +
-                "</head>" +
-                "<body>" +
-                "<table class=\"AnomaliesTable\">\n" +
-                "  <thead>\n" +
-                "    <tr>\n" +
-                "      <th>Descriptions</th>\n" +
-                "      <th>Timesteps (Row)</th>\n" +
-                "      <th>Anomaly Type</th>\n" +
-                "    </tr>\n" +
-                "  </thead>\n" +
-                "   <tfoot>\n" +
-                "      <tr>\n" +
-                "        <td colSpan=\"3\" style='text-align: center'> END OF RESULTS </td> \n" +
-                "     </tr>\n" +
-                "  </tfoot>";
-            let resultsTable2 =  "</table></body>";
+
+            const liner = new lineReader(path.join(__dirname, '../views/results.html'));
+
+            let line=liner.next()
+            for (let i = 0; i < 24; i++) {
+                res.write(line);
+                line=liner.next();
+            }
+
             let template =
                         {"<>":"tr","html":[
                                 {"<>":"td","html":"${description}"},
@@ -80,10 +55,12 @@ app.post('/detect', (req,res)=>{
                                 {"<>":"td","style":"text-align: center","html":"${anomalyType}"}
                             ]}
 
-            let html = json2html.render(reports,template);
-            res.write(resultsTable1)
-            res.write(html)
-            res.write(resultsTable2)
+            let resultsTable = json2html.render(reports,template);
+
+            res.write(resultsTable);
+            while (line=liner.next())
+                res.write(line);
+
             res.end()
         })
 })
