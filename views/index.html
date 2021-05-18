@@ -4,16 +4,16 @@
 
     <meta charset="UTF-8">
     <title>Anomalies Detection</title>
-    <h2 id="title">Anomalies Detection</h2>
     <link rel="stylesheet" href="css/dark.css">
 </head>
     <body>
-        <form ref='uploadForm'
+        <h2 id="title">Anomalies Detection</h2>
+        <form
           name='filesUpload'
           action='/detect'
           method='post'
           encType="multipart/form-data"
-          target="answer" />
+          target="answer"/>
         <table>
             <tr>
                 <td>
@@ -59,6 +59,14 @@
         <iframe id="iframeBorder" name="answer" width="80%" height="600"></iframe>
         <br><br><br>
         <p id="aboutText"><u>About :</u></p>
+        <p>Closeable Detectors:</p>
+        <p>Simple Detector - Learns the most correlated column to each column and calculates their regression line.<br>
+        then, detect samples in the train csv file that are distant from this line and present them as anomalies.</p>
+        <p>Hybrid Detector - Same as the Simple one but also contains a minimum circle algorithm. <br>
+        It Calculates the minimum circle to contain all the samples in the learn csv file, and check which sample in <br>
+        the test csv file does not fit in this circle, and presents them as anomalies as well.</p>
+
+        <br><br>
         <p>Created by Stav Lidor(<a href="https://github.com/stavLidor">Git</a>) & Liron Haim(<a href="https://github.com/LironHaim15">Git</a>)</p>
         <p>This web app Git can be found <a href="https://github.com/LironHaim15/anomalies_detection_web_app">here</a></p>
     </body>

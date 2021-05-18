@@ -30,6 +30,12 @@ app.post('/detect', (req,res)=>{
     if (Object.keys(req.files).length === 1) {
         return res.status(400).sendFile('errorOneFile.html', { root: path.join(__dirname, '../views') });
     }
+    // check file extension
+    let extension1 = req.files.learnCSV.name.substring(req.files.learnCSV.name.lastIndexOf('.') + 1);
+    let extension2 = req.files.testCSV.name.substring(req.files.testCSV.name.lastIndexOf('.') + 1);
+    if ( extension1.toUpperCase() !== 'CSV' || extension2.toUpperCase() !== 'CSV' ){
+        return res.status(400).sendFile('errorNotCSV.html', { root: path.join(__dirname, '../views') });
+    }
 
     //send the received data in post request to '/' and get a JSON fle with the result.
     const formData = new FormData();

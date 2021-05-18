@@ -14,7 +14,7 @@ The web app runs locally with port 8080. Project developed in Node.JS Express.
 
 
 * Make an HTTP-POST request of FormData including the `learn` and `test` csv file, and also the desired detection 
-  algorithm: `simepl` or `hybrid`. Get a JSON response containing the results.
+  algorithm: `simple` or `hybrid`. Get a JSON response containing the results.
   
 * About the detection algorithms:
   * Simple Detector - detects anomalies which are far from the regression line of two correlated features, with
@@ -24,7 +24,7 @@ The web app runs locally with port 8080. Project developed in Node.JS Express.
     
 ## Table of contents
 > * [Anomalies Detection Web Application](#anomalies-detection-web-application)
-    >   * [About](#about)
+>   * [About](#about)
 >   * [Features](#features)
 >   * [Table of contents](#table-of-contents)
 >   * [Starting The Server Side](#starting-the-server-side)
@@ -52,17 +52,22 @@ To run the server from the project directory enter the command:
 nodemon controllers/server.js
 ```
 The `controllers/server.js` is the path to the server file. (you could use `node` instead of `nodemon`).
+> For your convenience, a batch file to start the server is also included in the project, Just launch `start.bat`  and the server should be ready!
 
 If for some reason you encounter an error for a missing package - please install it specifically by entering the line: `npm install package_name`.
 You can use the flag `-g` to install it globally on your machine.
 
 When the server is up and running you may navigate to the webapp on the address `localhost:8080`.
 
+In order to shut down the server, press `Ctrl + C` in the terminal of the running server.
+
 ## Usage
-As the client, navigate to `localhost:8080` using the browser. Enter the csv files and choose type of detector.
+As the client, navigate to `localhost:8080` using the browser. Enter the csv files and choose type of detector (only CSV
+files will be accepted). Also, both csv files' first line must contain the names of the features (columns).
 Press on the `Submit!` button and get the results in the frame below.
 
-You may also send a manual HTTP-POST request to the url `localhost:8080` and get the results via JSON response.
+You may also send a manual HTTP-POST request to the url `localhost:8080` and get the results via JSON response. In this case,
+the data must be sent in FormData.
 
 
 ## Requirements
@@ -94,11 +99,16 @@ Our code files are organized in 3 folders:
   the anomalies using the models of the algorithms in the folder `detector`.
 * `controllers` contains the `server.js` file which responsible to connect between the view and the models.
 
+The two web app features uses the same code. The core of the application, where the learning and detection are performed,
+is in function that handles the case of '/' POST request, which is responded by a JSON containing the results.
+The HTML page with the `Submit!` button performs a POST request to '/detect', and the function that handles this case 
+utilises the existing code by creating a fetch request to '/'.
+
 Full UML PDF can be found within the project and a picture in the [Screenshots](#screenshots) below.
 
 ## Video Demo
 
-[Watch here](https://youtu.be/58-n3c-bOTY) ????????????????????????????
+[Watch here](https://youtu.be/aPOpYeg4YPg)
 
 
 ## Authors
