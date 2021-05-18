@@ -95,11 +95,11 @@ Our code files are organized in 3 folders:
 * `views` folder contains the main html `index.html`,`results.html` where the results are injected, and dedicated html 
   files for errors. Also, another css folder with 2 css files (`dark.css` for dark theme and `light.css` for light theme).
   To change between the two themes you must do it manually on each html file in the views' folder.
-* `models` folder contains `csv_parser.js` which responsible for parsing the csv data, learn the data and detect
+* `models` folder contains `csv_parser.js` which is responsible for parsing the csv data, learn the data and detect
   the anomalies using the models of the algorithms in the folder `detector`.
 * `controllers` contains the `server.js` file which responsible to connect between the view and the models.
 
-The two web app features uses the same code. The core of the application, where the learning and detection are performed,
+The two web app features use the same code. The core of the application, where the learning and detection are performed,
 is in function that handles the case of '/' POST request, which is responded by a JSON containing the results.
 The HTML page with the `Submit!` button performs a POST request to '/detect', and the function that handles this case 
 utilises the existing code by creating a fetch request to '/'.
