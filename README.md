@@ -65,8 +65,8 @@ In order to shut down the server, press `Ctrl + C` in the terminal of the runnin
 As the client, navigate to `localhost:8080` using the browser. Enter the csv files and choose type of detector (only CSV
 files will be accepted). Also, both csv files' first line must contain the names of the features (columns).
 Press on the `Submit!` button and get the results in the frame below.
- > IMPORTANT: The csv files must be encoded with new line of `\n`. If your files are encoded otherwise, please convert
-> them before you upload them. Alternatively you can change the code in the `models/csv_parser.js` to support other encodings.
+ > IMPORTANT: The csv files must be encoded with new line of `\n` (UNIX new-line). If your files are encoded otherwise, please convert
+> them before you upload them. Alternatively you can change the code in the `models/csv_parser.js` to support other encodings of new-lines.
 
 You may also send a manual HTTP-POST request to the url `localhost:8080` and get the results via JSON response. In this case,
 the data must be sent in FormData.
